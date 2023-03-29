@@ -17,6 +17,7 @@ class ImageController extends Controller
      *  In order to use this api you must get a valid username and password provided by our team.
      * @param Request $request
      * @return User
+     * @authenticated
      * @bodyParam image file required Your file.
      * @bodyParam folder string required Your folders name. Example: productos
      */

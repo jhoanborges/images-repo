@@ -24,8 +24,8 @@ Route::post('/auth/login','Api\AuthController@loginUser' )->name('login');
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::post('/auth/user','Api\AuthController@getUserInformation' );
 
+    Route::post('/auth/user','Api\AuthController@getUserInformation' );
     Route::post('uploadImage','ImageController@imageStore');
 
 

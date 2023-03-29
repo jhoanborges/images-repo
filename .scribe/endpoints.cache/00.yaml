@@ -123,7 +123,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer a4Zcged8EVfv1hD6ab35k6P'
+      - 'Bearer 8ad5V1E4ZfPa366bekchDvg'
     controller: null
     method: null
     route: null
@@ -139,9 +139,10 @@ endpoints:
       subgroupDescription: ''
       title: 'POST - Upload Image'
       description: 'In order to use this api you must get a valid username and password provided by our team.'
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
@@ -178,7 +179,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Eaf5PdVac86h1gZk3ve46bD'
     controller: null
     method: null
     route: null

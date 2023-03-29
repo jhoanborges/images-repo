@@ -171,6 +171,13 @@ paths:
       parameters:
         -
           in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
           name: Content-Type
           description: ''
           example: multipart/form-data
@@ -216,7 +223,6 @@ paths:
               required:
                 - image
                 - folder
-      security: []
 tags:
   -
     name: Endpoints

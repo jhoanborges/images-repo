@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Images API REST Documentation",
-        "_postman_id": "8d6712c1-edfc-4332-81f0-d07a83990492",
+        "_postman_id": "2915cc3b-ddbb-40a4-ac3f-9486f9b10470",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -137,10 +137,7 @@
                                 }
                             ]
                         },
-                        "description": "In order to use this api you must get a valid username and password provided by our team.",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "In order to use this api you must get a valid username and password provided by our team."
                     },
                     "response": [
                         {
