@@ -21,11 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/auth/register','Api\AuthController@createUser' );
 Route::post('/auth/login','Api\AuthController@loginUser' )->name('login');
-Route::post('/auth/user','Api\AuthController@getUserInformation' )->middleware('auth:sanctum');
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('/auth/user','Api\AuthController@getUserInformation' );
 
     Route::post('uploadImage','ImageController@imageStore');
+
 
 });

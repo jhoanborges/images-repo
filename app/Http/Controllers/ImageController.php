@@ -10,6 +10,37 @@ use Validator;
 
 class ImageController extends Controller
 {
+
+        /**
+     * POST - Upload Image
+     *
+     *  In order to use this api you must get a valid username and password provided by our team.
+     * @param Request $request
+     * @return User
+     * @bodyParam image file required Your file.
+     * @bodyParam folder string required Your folders name. Example: productos
+     */
+    #[Response('{
+        "success": true,
+        "message": "Image created",
+        "data": {
+            "name": "6423edf5dddc4.png",
+            "image": "http://images-repo.test/imagenes/productos/6423edf5dddc4.png",
+            "folder": "productos",
+            "updated_at": "2023-03-29T07:51:17.000000Z",
+            "created_at": "2023-03-29T07:51:17.000000Z",
+            "id": 20
+        }
+    }', 200)]
+
+    #[Response('{
+        "success": false,
+        "errors": {
+            "image": [
+                "The image field must be a file of type: webp."
+            ]
+        }
+    }', 404)]
     public function imageStore(Request $request)
     {
 
@@ -30,15 +61,17 @@ class ImageController extends Controller
         $extension = $file->getClientOriginalExtension();
         $filename = uniqid().'.'.$extension;
 
-        $storage_file = Storage::disk('productos')->put($filename, file_get_contents($file));
-//dd($storage_file);
-        $image_path = Storage::disk('productos')->url($filename) ;
+        $folder =  $request->folder;
+
+        $storage_file = Storage::disk($folder)->put($filename, file_get_contents($file));
+
+        $image_path = Storage::disk($folder)->url($filename) ;
 
 
         $data = Image::create([
             'name' => $filename,
             'image' => $image_path,
-            'folder' => $request->folder,
+            'folder' => $folder,
         ]);
 
         return response()->json([
