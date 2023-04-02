@@ -20,13 +20,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 */
 
 Route::post('/auth/register','Api\AuthController@createUser' );
-Route::post('/auth/login','Api\AuthController@loginUser' )->name('login');
+Route::post('/auth/login','Api\AuthController@loginUser' )->name('login')->middleware(\Spatie\HttpLogger\Middlewares\HttpLogger::class);
+
+Route::post('uploadImage','ImageController@imageStore')->middleware(\Spatie\HttpLogger\Middlewares\HttpLogger::class);
+Route::post('fileStoreBase64','ImageController@fileStoreBase64');
+
+Route::post('getFileByID','ImageController@getFileByID');
+
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::post('/auth/user','Api\AuthController@getUserInformation' );
-    Route::post('uploadImage','ImageController@imageStore');
 
 
 });

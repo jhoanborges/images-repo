@@ -73,6 +73,128 @@ endpoints:
   -
     httpMethods:
       - POST
+    uri: api/uploadImage
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST - Upload Image'
+      description: 'In order to use this api you must get a valid username and password provided by our team.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      folder:
+        name: folder
+        description: 'Your folders name.'
+        required: true
+        example: productos
+        type: string
+        custom: []
+      image:
+        name: image
+        description: 'Your file.'
+        required: true
+        example: null
+        type: file
+        custom: []
+    cleanBodyParameters:
+      folder: productos
+    fileParameters:
+      image: null
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"message":"Image created","data":{"name":"642931ab0cd4e.jpg","image":"http:\/\/images-repo.test\/imagenes\/productos\/642931ab0cd4e.jpg","folder":"productos","updated_at":"2023-04-02T07:41:31.000000Z","created_at":"2023-04-02T07:41:31.000000Z","id":71}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '56'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer a4Pav6bE3ch5d6DZVke81fg'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/getFileByID
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST - GET File by Image URL'
+      description: 'In order to use this api you must get a valid username and password provided by our team.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      imageurl:
+        name: imageurl
+        description: 'file Your file.'
+        required: true
+        example: 'http://huels.com/numquam-quis-aut-aut-amet-velit-et.html'
+        type: string
+        custom: []
+    cleanQueryParameters:
+      imageurl: 'http://huels.com/numquam-quis-aut-aut-amet-velit-et.html'
+    bodyParameters:
+      image_url:
+        name: image_url
+        description: ''
+        required: true
+        example: odio
+        type: string
+        custom: []
+    cleanBodyParameters:
+      image_url: odio
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":false,"message":"La imagen no existe en la base de datos."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '55'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer bZ1ae38c5Vf6DavE6P4kdgh'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
     uri: api/auth/user
     metadata:
       groupName: Endpoints
@@ -123,66 +245,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 8ad5V1E4ZfPa366bekchDvg'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/uploadImage
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'POST - Upload Image'
-      description: 'In order to use this api you must get a valid username and password provided by our team.'
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: multipart/form-data
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      image:
-        name: image
-        description: 'Your file.'
-        required: true
-        example: null
-        type: file
-        custom: []
-      folder:
-        name: folder
-        description: 'Your folders name.'
-        required: true
-        example: productos
-        type: string
-        custom: []
-    cleanBodyParameters:
-      folder: productos
-    fileParameters:
-      image: null
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer Eaf5PdVac86h1gZk3ve46bD'
+      - 'Bearer aV4v665fP8ehkc1DZb3dEag'
     controller: null
     method: null
     route: null

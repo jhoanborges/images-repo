@@ -38,6 +38,14 @@ return [
             'throw' => true,
         ],
 
+        'sliders' => [
+            'driver' => 'local',
+            'root' => public_path('/imagenes/sliders/'),
+            'url' => env('APP_URL').'/imagenes/sliders/',
+            'visibility' => 'public',
+            'throw' => true,
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

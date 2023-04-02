@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Images API REST Documentation",
-        "_postman_id": "2915cc3b-ddbb-40a4-ac3f-9486f9b10470",
+        "_postman_id": "2cbff36b-228e-433b-be99-574d3e5f406e",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -59,44 +59,6 @@
                             "header": [],
                             "code": 404,
                             "body": "{\n        \"status\": false,\n        \"message\": \"Email & Password does not match with our record.\"\n    }",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "GET - Get logged in user's information",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/auth\/user",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/auth\/user"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n        \"id\": 1,\n        \"name\": \"Jhoan\",\n        \"email\": \"jhoan.borges@senter.mx\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2022-12-19T22:51:20.000000Z\",\n        \"updated_at\": \"2022-12-19T22:51:20.000000Z\",\n        \"odoo_account_id\": 13\n    }",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 401,
-                            "body": "{\n        \"message\": \"Unauthenticated.\"\n    }",
                             "name": ""
                         }
                     ]
@@ -151,12 +113,121 @@
                                     "value": "application\/json"
                                 },
                                 {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"message\":\"Image created\",\"data\":{\"name\":\"642931ab0cd4e.jpg\",\"image\":\"http:\\\/\\\/images-repo.test\\\/imagenes\\\/productos\\\/642931ab0cd4e.jpg\",\"folder\":\"productos\",\"updated_at\":\"2023-04-02T07:41:31.000000Z\",\"created_at\":\"2023-04-02T07:41:31.000000Z\",\"id\":71}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST - GET File by Image URL",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/getFileByID",
+                            "query": [
+                                {
+                                    "key": "imageurl",
+                                    "value": "http%3A%2F%2Fhuels.com%2Fnumquam-quis-aut-aut-amet-velit-et.html",
+                                    "description": "file Your file.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/getFileByID?imageurl=http%3A%2F%2Fhuels.com%2Fnumquam-quis-aut-aut-amet-velit-et.html"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"image_url\":\"odio\"}"
+                        },
+                        "description": "In order to use this api you must get a valid username and password provided by our team."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":false,\"message\":\"La imagen no existe en la base de datos.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET - Get logged in user's information",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/user"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n        \"id\": 1,\n        \"name\": \"Jhoan\",\n        \"email\": \"jhoan.borges@senter.mx\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2022-12-19T22:51:20.000000Z\",\n        \"updated_at\": \"2022-12-19T22:51:20.000000Z\",\n        \"odoo_account_id\": 13\n    }",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
                             "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "body": "{\n        \"message\": \"Unauthenticated.\"\n    }",
                             "name": ""
                         }
                     ]

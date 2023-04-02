@@ -11,12 +11,11 @@ use Validator;
 class ImageController extends Controller
 {
 
-        /**
+    /**
      * POST - Upload Image
      *
      *  In order to use this api you must get a valid username and password provided by our team.
      * @param Request $request
-     * @return User
      * @authenticated
      * @bodyParam image file required Your file.
      * @bodyParam folder string required Your folders name. Example: productos
@@ -45,10 +44,14 @@ class ImageController extends Controller
     public function imageStore(Request $request)
     {
 
+        //$filename = $request->file('image');
+        //dd($filename);
+        //dd($request->file('image' ));
+        //return response()->json($request->all());
 
         $validator = Validator::make($request->all(), [
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:12048',
-
+            //'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:120048',
+            'folder' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -58,15 +61,15 @@ class ImageController extends Controller
             ]);
         }
 
-        $file = $request->file('image') ;
+        $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
-        $filename = uniqid().'.'.$extension;
+        $filename = uniqid() . '.' . $extension;
 
         $folder =  $request->folder;
 
         $storage_file = Storage::disk($folder)->put($filename, file_get_contents($file));
 
-        $image_path = Storage::disk($folder)->url($filename) ;
+        $image_path = Storage::disk($folder)->url($filename);
 
 
         $data = Image::create([
@@ -77,8 +80,68 @@ class ImageController extends Controller
 
         return response()->json([
             'success' => true,
-            'message'=> 'Image created',
+            'message' => 'Image created',
             'data' => $data
-        ],200);
+        ], 200);
+    }
+
+
+    /**
+     * POST - GET File by Image URL
+     *
+     *  In order to use this api you must get a valid username and password provided by our team.
+     * @param Request $request
+     * @authenticated
+     * @queryParam imageurl file required Your file.
+     */
+    #[Response('{
+        "success": true,
+        "message": "Image retrieved",
+        "data": {
+            "id": 70,
+            "user_id": null,
+            "name": "6429302447771.png",
+            "image": "http://images-repo.test/imagenes/sliders/6429302447771.png",
+            "folder": "sliders",
+            "created_at": "2023-04-02T07:35:00.000000Z",
+            "updated_at": "2023-04-02T07:35:00.000000Z"
+        }
+    }', 200)]
+
+    #[Response('{
+        "success": false,
+        "message": "La imagen no existe en la base de datos."
+    }', 404)]
+    public function getFileByID(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'image_url' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Image URL is null',
+                'errors' => $validator->messages()->get('*')
+            ]);
+        }
+
+
+        $query = Image::where('image', $request->image_url);
+        if (!$query->first()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'La imagen no existe en la base de datos.'
+            ]);
+        }
+
+        $data = $query->first();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Image retrieved',
+            'data' => $data
+        ], 200);
     }
 }
